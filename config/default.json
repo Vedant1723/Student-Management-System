@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://vedant1723:vedant1723@sms.blzee.mongodb.net/DB?retryWrites=true&w=majority",
+  "jwtSecret": "mySecretToken"
+}
