@@ -1,0 +1,32 @@
+.auth-card {
+  border: 2px solid black;
+  border-radius: 4px;
+  /* background-color: red; */
+  /* height: 50vh; */
+}
+
+.buttons {
+  border: 1px solid black;
+  padding: 0.7rem 1rem;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  color: black;
+  margin: 0.5rem;
+  background-color: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition: 0.5s all ease;
+}
+
+.buttons:hover {
+  background-color: black;
+  color: #eee;
+  transition: 0.5s all ease;
+  transform: translateY(-0.2rem);
+}
+
+@media screen and (max-width: 924px) {
+  .buttons {
+    font-size: 1.5rem;
+  }
+}

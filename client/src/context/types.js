@@ -1,0 +1,14 @@
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAIL = "LOGIN_FAIL";
+export const REGISTER_FAIL = "REGISTER_FAIL";
+export const LOGOUT = "LOGOUT";
+export const LOAD_USER = "LOAD_USER";
+export const LOAD_STUDENT = "LOAD_STUDENT";
+export const CREATE_STUDENT = "CREATE_STUDENT";
+export const LOAD_FAIL = "LOAD_FAIL";
+export const UPDATE_STUDENT = "UPDATE_STUDENT";
+export const DELETE_STUDENT = "DELETE_STUDENT";
+export const GET_STUD_ID = "GET_STUD_ID";
+export const SEND_OBJ = "SEND_OBJ";
+export const LOAD_TEACHERS = "LOAD_TEACHERS";

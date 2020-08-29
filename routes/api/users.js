@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
 const config = require("config");
+const auth = require("../../middleware/auth");
 
 const User = require("../../models/User");
 
@@ -72,5 +73,25 @@ router.post(
     }
   }
 );
+
+router.get("/", auth, async (req, res) => {
+  try {
+    const userDept = await User.findById({
+      _id: req.user.id,
+    });
+    const users = await User.find({
+      department: userDept.department,
+    });
+    if (!users) {
+      return res
+        .status(400)
+        .json({ msg: "There are no Teachers of this Department" });
+    }
+    res.json(users);
+  } catch (error) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
 
 module.exports = router;
