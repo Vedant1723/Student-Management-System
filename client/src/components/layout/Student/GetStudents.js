@@ -29,6 +29,8 @@ const GetStudents = () => {
             <th>Department</th>
             <th>Phone</th>
             <th>Email</th>
+            <th>Placement Status</th>
+            <th>Address</th>
             <th>Actions</th>
           </tr>
           {students.length > 0 ? (
@@ -41,6 +43,8 @@ const GetStudents = () => {
                 <td>{s.department}</td>
                 <td>{s.phoneNumber}</td>
                 <td>{s.email}</td>
+                <td>{s.placementStatus}</td>
+                <td>{s.address}</td>
                 <td>
                   <div
                     style={{

@@ -1,4 +1,4 @@
-import React, { useContext, Fragment, useEffect } from "react";
+import React, { useContext, Fragment } from "react";
 import authContext from "../../../context/auth/authContext";
 import { Link, useHistory } from "react-router-dom";
 import studentContext from "../../../context/student/studentContext";
@@ -11,12 +11,7 @@ const CreateStudent = () => {
   const { user, isAuthenticated } = AuthContext;
   const StudentContext = useContext(studentContext);
   const { createStud } = StudentContext;
-  const options = [
-    { label: "Computer Applications", value: "Computer Applications" },
-    { label: "Engineering", value: "Engineering" },
-    { label: "Business School", value: "Business School" },
-    { label: "Allied Health Science", value: "Allied Health Science" },
-  ];
+
   const [roll, setRoll] = useState("");
   const [fName, setfName] = useState("");
   const [lName, setlName] = useState("");
@@ -25,6 +20,7 @@ const CreateStudent = () => {
   const [mobile, setmobile] = useState("");
   const [emailID, setemailID] = useState("");
   const [location, setlocation] = useState("");
+  const [placement, setPlacement] = useState("");
 
   const sample = () => {
     const data = {
@@ -36,6 +32,7 @@ const CreateStudent = () => {
       phoneNumber: mobile,
       email: emailID,
       address: location,
+      placementStatus: placement,
     };
     console.log(data);
     createStud(data);
@@ -122,6 +119,18 @@ const CreateStudent = () => {
                   value={user.department}
                   class="validate"
                 />
+              </div>
+              <div className="input-field col s5">
+                <input
+                  id="placement"
+                  type="text"
+                  class="validate"
+                  value={placement}
+                  onChange={(e) => {
+                    setPlacement(e.target.value);
+                  }}
+                />
+                <label for="placement">Placement Status</label>
               </div>
             </div>
             <div className="row">

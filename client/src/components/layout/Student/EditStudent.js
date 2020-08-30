@@ -1,22 +1,23 @@
-import React, { useContext, Fragment, useEffect } from "react";
+import React, { useContext, Fragment } from "react";
 import authContext from "../../../context/auth/authContext";
 import { Link, useHistory } from "react-router-dom";
-import studentContext from "../../../context/student/studentContext";
 import { useState } from "react";
+import studentContext from "../../../context/student/studentContext";
 import "./CreateStudent.css";
+import { useEffect } from "react";
 
 const EditStudent = () => {
   const AuthContext = useContext(authContext);
   const history = useHistory();
   const { user, isAuthenticated } = AuthContext;
+  useEffect(() => {
+    if (!isAuthenticated) {
+      history.push("/");
+    }
+  }, [isAuthenticated]);
   const StudentContext = useContext(studentContext);
   const { updateStud, student } = StudentContext;
-  const options = [
-    { label: "Computer Applications", value: "Computer Applications" },
-    { label: "Engineering", value: "Engineering" },
-    { label: "Business School", value: "Business School" },
-    { label: "Allied Health Science", value: "Allied Health Science" },
-  ];
+
   const [roll, setRoll] = useState(student.rollNumber);
   const [fName, setfName] = useState(student.firstName);
   const [lName, setlName] = useState(student.lastName);
@@ -25,6 +26,7 @@ const EditStudent = () => {
   const [mobile, setmobile] = useState(student.phoneNumber);
   const [emailID, setemailID] = useState(student.email);
   const [location, setlocation] = useState(student.address);
+  const [placement, setPlacement] = useState(student.placementStatus);
 
   const sample = () => {
     const data = {
@@ -36,6 +38,7 @@ const EditStudent = () => {
       phoneNumber: mobile,
       email: emailID,
       address: location,
+      placementStatus: placement,
     };
     console.log(data);
     updateStud(student._id, data);
@@ -101,7 +104,7 @@ const EditStudent = () => {
               </div>
             </div>
             <div class="row">
-              <div class="input-field col s5">
+              <div class="input-field col s4">
                 <input
                   id="email"
                   type="email"
@@ -114,7 +117,7 @@ const EditStudent = () => {
                 <label for="email">Email</label>
               </div>
 
-              <div className="input-field col s5">
+              <div className="input-field col s4">
                 <input
                   disabled
                   id="dept"
@@ -122,6 +125,18 @@ const EditStudent = () => {
                   value={user.department}
                   class="validate"
                 />
+              </div>
+              <div className="input-field col s4">
+                <input
+                  id="placement"
+                  type="text"
+                  class="validate"
+                  value={placement}
+                  onChange={(e) => {
+                    setPlacement(e.target.value);
+                  }}
+                />
+                <label for="placement">Placement Status</label>
               </div>
             </div>
             <div className="row">

@@ -22,6 +22,24 @@ router.get("/me", auth, async (req, res) => {
   }
 });
 
+// router.get("/:id", auth, async (req, res) => {
+//   try {
+//     // const userPro = await User.findById({
+//     //   _id: req.params.id,
+//     // });
+//     const profile = await Profile.find({
+//       user: req.params.id,
+//     }).populate("user", ["name", "avatar"]);
+//     if (!profile) {
+//       return res.status(400).json({ msg: "No Profile Found" });
+//     }
+//     res.json(profile);
+//   } catch (error) {
+//     console.error(err.message);
+//     res.status(500).send("Server Error");
+//   }
+// });
+
 //Create Profile or Update user Profile
 router.post(
   "/",
@@ -40,16 +58,19 @@ router.post(
     //Build Profile Object
     const profileFields = {};
     profileFields.user = req.user.id;
-    if (phone) profileFields.phone = phone;
-    if (address) profileFields.address = address;
-    if (skills) {
-      profileFields.skills = skills.split(",").map((skill) => skill.trim());
-    }
-    if (designation) {
-      profileFields.designation = designation;
-    }
 
     try {
+      if (phone) profileFields.phone = phone;
+      if (address) profileFields.address = address;
+      if (skills) {
+        profileFields.skills = skills
+          .toString()
+          .split(",")
+          .map((skill) => skill.trim());
+      }
+      if (designation) {
+        profileFields.designation = designation;
+      }
       let profile = await Profile.findOne({ user: req.user.id });
       if (profile) {
         //Update

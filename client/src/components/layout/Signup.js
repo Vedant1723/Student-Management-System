@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Select from "react-select";
-import axios from "axios";
 import authContext from "../../context/auth/authContext";
 
 export const Signup = () => {

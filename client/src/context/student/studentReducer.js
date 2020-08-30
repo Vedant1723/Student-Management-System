@@ -37,12 +37,11 @@ export default (state, action) => {
         loading: false,
         student: action.payload,
       };
-    case SEND_OBJ: {
+    case SEND_OBJ:
       return {
         ...state,
         student: action.payload,
       };
-    }
     default:
       return state;
   }

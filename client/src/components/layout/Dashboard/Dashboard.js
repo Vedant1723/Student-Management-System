@@ -5,15 +5,19 @@ import Spinner from "../Spinner";
 import "./Dashboard.css";
 import Edit from "../Assets/edit.png";
 import UserImg from "../Assets/user.png";
+import teacherContext from "../../../context/teacher/teacherContext";
 
 export const Dashboard = () => {
   const history = useHistory();
   const AuthContext = useContext(authContext);
   const { isAuthenticated, loadUser, user, loading } = AuthContext;
+  const TeacherContext = useContext(teacherContext);
+  const { currentProfile, getCurrentProfile } = TeacherContext;
 
   useEffect(() => {
     if (isAuthenticated) {
       loadUser();
+      getCurrentProfile();
       history.push("/dashboard");
       console.log("User signed in::", user.name);
     } else {
@@ -45,6 +49,9 @@ export const Dashboard = () => {
                   <b>{user.email}</b>
                 </p>
                 <p className="center-align">
+                  <b>{currentProfile.designation}</b>
+                </p>
+                <p className="center-align">
                   <b>{user.department}</b>
                 </p>
               </div>
@@ -66,7 +73,7 @@ export const Dashboard = () => {
                   <div className="card-content black-text">
                     <img src={Edit} height="30" width="30" />
                     <p className="center-align">
-                      <b>Edit Students</b>
+                      <b>Add Students</b>
                     </p>
                   </div>
                 </div>

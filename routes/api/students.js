@@ -40,6 +40,7 @@ router.put(
     check("phoneNumber", "Phone Number is Required").not().isEmpty(),
     check("email", "Email is Required").not().isEmpty(),
     check("address", "Address is Required").not().isEmpty(),
+    check("placementStatus", "Placement Status is Required").not().isEmpty(),
   ],
   async (req, res) => {
     console.log(req.params.id);
@@ -55,6 +56,7 @@ router.put(
       department,
       phoneNumber,
       email,
+      placementStatus,
       address,
     } = req.body;
     //Build Student Object
@@ -69,7 +71,7 @@ router.put(
     if (classOfStudent) studentFields.classOfStudent = classOfStudent;
     if (phoneNumber) studentFields.phoneNumber = phoneNumber;
     if (email) studentFields.email = email;
-
+    if (placementStatus) studentFields.placementStatus = placementStatus;
     try {
       let studentProfile = await Student.findOne({
         _id: req.params.id,
@@ -109,6 +111,7 @@ router.post(
     check("phoneNumber", "Phone Number is Required").not().isEmpty(),
     check("email", "Email is Required").not().isEmpty(),
     check("address", "Address is Required").not().isEmpty(),
+    check("placementStatus", "Placement Status is Required").not().isEmpty(),
   ],
   async (req, res) => {
     console.log(req.params.id);
@@ -125,21 +128,23 @@ router.post(
       phoneNumber,
       email,
       address,
+      placementStatus,
     } = req.body;
     //Build Student Object
     const studentFields = {};
-    if (rollNumber) studentFields.rollNumber = rollNumber;
-    if (address) studentFields.address = address;
-    if (department) {
-      studentFields.department = department;
-    }
-    if (firstName) studentFields.firstName = firstName;
-    if (lastName) studentFields.lastName = lastName;
-    if (classOfStudent) studentFields.classOfStudent = classOfStudent;
-    if (phoneNumber) studentFields.phoneNumber = phoneNumber;
-    if (email) studentFields.email = email;
 
     try {
+      if (rollNumber) studentFields.rollNumber = rollNumber;
+      if (address) studentFields.address = address;
+      if (department) {
+        studentFields.department = department;
+      }
+      if (firstName) studentFields.firstName = firstName;
+      if (lastName) studentFields.lastName = lastName;
+      if (classOfStudent) studentFields.classOfStudent = classOfStudent;
+      if (phoneNumber) studentFields.phoneNumber = phoneNumber;
+      if (placementStatus) studentFields.placementStatus = placementStatus;
+      if (email) studentFields.email = email;
       let studentProfile = await Student.findOne({
         _id: req.params.id,
       });

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import authContext from "../../context/auth/authContext";
+import teacherContext from "../../context/teacher/teacherContext";
 
 export const Toolbar = () => {
   // const [token, setToken] = useState(null);
@@ -8,6 +9,8 @@ export const Toolbar = () => {
   const history = useHistory();
   const AuthContext = useContext(authContext);
   const { isAuthenticated, logout, loadTeachers, users } = AuthContext;
+  const TeacherContext = useContext(teacherContext);
+  const { getCurrentProfile } = TeacherContext;
 
   const logUserOut = () => {
     logout();
@@ -27,7 +30,13 @@ export const Toolbar = () => {
           </a>
         </li>
         <li>
-          <a className="black-text" href="badges.html">
+          <a
+            className="black-text"
+            onClick={() => {
+              history.push("/getProfile");
+              getCurrentProfile();
+            }}
+          >
             Profile
           </a>
         </li>

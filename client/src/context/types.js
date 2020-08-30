@@ -12,3 +12,6 @@ export const DELETE_STUDENT = "DELETE_STUDENT";
 export const GET_STUD_ID = "GET_STUD_ID";
 export const SEND_OBJ = "SEND_OBJ";
 export const LOAD_TEACHERS = "LOAD_TEACHERS";
+export const GET_CURRENT_PROFILE = "GET_CURRENT_PROFILE";
+export const CREATE_PROFILE = "CREATE_PROFILE";
+export const UPDATE_PROFILE = "UPDATE_PROFILE";

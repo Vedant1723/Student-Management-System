@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./Login.css";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import authContext from "../../context/auth/authContext";
 export const Login = () => {
   const [email, setEmail] = useState("");

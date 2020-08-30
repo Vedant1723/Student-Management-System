@@ -25,6 +25,7 @@ const StudentSchema = new Schema({
   },
   placementStatus: {
     type: String,
+    required: true,
   },
   phoneNumber: {
     type: Number,
