@@ -1,4 +1,4 @@
-import { GET_CURRENT_PROFILE, UPDATE_PROFILE } from "../types";
+import { GET_CURRENT_PROFILE, UPDATE_PROFILE, CLEAR_PROFILE } from "../types";
 
 export default (state, action) => {
   switch (action.type) {
@@ -13,6 +13,11 @@ export default (state, action) => {
         ...state,
         currentProfile: action.payload,
         loading: false,
+      };
+    case CLEAR_PROFILE:
+      return {
+        ...state,
+        currentProfile: {},
       };
     default:
       return {

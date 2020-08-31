@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
 import axios from "axios";
-import { GET_CURRENT_PROFILE, UPDATE_PROFILE } from "../types";
+import { GET_CURRENT_PROFILE, UPDATE_PROFILE, CLEAR_PROFILE } from "../types";
 import teacherReducer from "./teacherReducer";
 import TeacherContext from "./teacherContext";
 
@@ -41,6 +41,9 @@ const TeacherState = (props) => {
       console.log(error.message);
     }
   };
+  const clearPro = () => {
+    dispatch({ type: CLEAR_PROFILE });
+  };
 
   return (
     <TeacherContext.Provider
@@ -50,6 +53,7 @@ const TeacherState = (props) => {
         error: state.error,
         getCurrentProfile,
         updateProfile,
+        clearPro,
       }}
     >
       {props.children}

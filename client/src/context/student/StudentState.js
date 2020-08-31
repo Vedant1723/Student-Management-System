@@ -8,6 +8,7 @@ import {
   LOAD_FAIL,
   DELETE_STUDENT,
   SEND_OBJ,
+  FILTER_STUDENTS,
 } from "../types";
 import studentReducer from "./studentReducer";
 import StudentContext from "./studentContext";
@@ -15,6 +16,7 @@ import StudentContext from "./studentContext";
 const StudentState = (props) => {
   const initialState = {
     student: {},
+    filterStudents: [],
     students: [],
     loading: true,
     error: null,
@@ -34,6 +36,12 @@ const StudentState = (props) => {
     } catch (error) {
       dispatch({ type: LOAD_FAIL, payload: error });
     }
+  };
+
+  const filterStud = (value) => {
+    console.log(value);
+
+    dispatch({ type: FILTER_STUDENTS, payload: value });
   };
 
   const createStud = async (formData) => {
@@ -91,11 +99,13 @@ const StudentState = (props) => {
         students: state.students,
         loading: state.loading,
         error: state.error,
+        filterStudents: state.filterStudents,
         createStud,
         getStud,
         removeStud,
         updateStud,
         getObj,
+        filterStud,
       }}
     >
       {props.children}

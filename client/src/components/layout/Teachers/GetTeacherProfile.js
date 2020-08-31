@@ -3,13 +3,17 @@ import { useContext } from "react";
 import teacherContext from "../../../context/teacher/teacherContext";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import authContext from "../../../context/auth/authContext";
 
 const GetTeacherProfile = () => {
   const TeacherContext = useContext(teacherContext);
   const { currentProfile, getCurrentProfile, loading } = TeacherContext;
+  const AuthContext = useContext(authContext);
+  const { user } = AuthContext;
   useEffect(() => {
+    console.log("LODAAAAA");
     getCurrentProfile();
-  }, [getCurrentProfile]);
+  }, [user]);
   return currentProfile != null ? (
     <div>
       <h2> {currentProfile.phone}</h2>

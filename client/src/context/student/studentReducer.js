@@ -5,13 +5,24 @@ import {
   LOAD_FAIL,
   DELETE_STUDENT,
   SEND_OBJ,
+  FILTER_STUDENTS,
 } from "../types";
 export default (state, action) => {
   switch (action.type) {
     case LOAD_STUDENT:
       return {
         ...state,
-        students: action.payload,
+        students: action.payload.sort(function (a, b) {
+          return a.rollNumber - b.rollNumber;
+        }),
+        loading: false,
+      };
+    case FILTER_STUDENTS:
+      return {
+        ...state,
+        filterStudents: state.students.filter(
+          (student) => student.placementStatus === action.payload
+        ),
         loading: false,
       };
     case CREATE_STUDENT:

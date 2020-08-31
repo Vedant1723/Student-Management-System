@@ -10,10 +10,11 @@ export const Toolbar = () => {
   const AuthContext = useContext(authContext);
   const { isAuthenticated, logout, loadTeachers, users } = AuthContext;
   const TeacherContext = useContext(teacherContext);
-  const { getCurrentProfile } = TeacherContext;
+  const { getCurrentProfile, clearPro } = TeacherContext;
 
   const logUserOut = () => {
     logout();
+    clearPro();
   };
 
   const authLink = (
