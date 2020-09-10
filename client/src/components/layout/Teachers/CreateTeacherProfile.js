@@ -1,16 +1,21 @@
-import React, { useContext, Fragment } from "react";
+import React, { useContext, Fragment, useEffect } from "react";
 import { useState } from "react";
 import teacherContext from "../../../context/teacher/teacherContext";
 import Spinner from "../Spinner";
+import authContext from "../../../context/auth/authContext";
+import { useHistory } from "react-router-dom";
 
 export const CreateTeacherProfile = () => {
   const TeacherContext = useContext(teacherContext);
+  const history = useHistory();
   const { currentProfile, getCurrentProfile } = TeacherContext;
-  //   useEffect(() => {
-  //     if (currentProfile) {
-  //       getCurrentProfile();
-  //     }
-  //   }, [getCurrentProfile]);
+  const AuthContext = useContext(authContext);
+  const { isAuthenticated } = AuthContext;
+  useEffect(() => {
+    if (!isAuthenticated) {
+      history.push("/");
+    }
+  }, [isAuthenticated]);
   const [mobile, setPhone] = useState("");
   const [desig, setDesignation] = useState("");
   const [skl, setSkills] = useState("");

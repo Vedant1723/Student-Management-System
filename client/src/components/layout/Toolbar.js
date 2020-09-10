@@ -8,13 +8,14 @@ export const Toolbar = () => {
 
   const history = useHistory();
   const AuthContext = useContext(authContext);
-  const { isAuthenticated, logout, loadTeachers, users } = AuthContext;
+  const { isAuthenticated, logout, loadTeachers, user } = AuthContext;
   const TeacherContext = useContext(teacherContext);
   const { getCurrentProfile, clearPro } = TeacherContext;
 
   const logUserOut = () => {
     logout();
     clearPro();
+    alert("You have been Logged Out!");
   };
 
   const authLink = (
@@ -68,14 +69,18 @@ export const Toolbar = () => {
     <>
       <nav>
         <div class="nav-wrapper grey lighten-5 black-text z-depth-2">
-          <Link to="/" class="brand-logo black-text bold">
+          <Link
+            to="/"
+            class="brand-logo black-text bold"
+            style={{ marginLeft: "10px" }}
+          >
             {" "}
             SMS
           </Link>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger">
             <i class="material-icons black-text">menu</i>
           </a>
-          {isAuthenticated ? authLink : ""}
+          {user != null ? authLink : ""}
         </div>
       </nav>
     </>

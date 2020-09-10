@@ -58,6 +58,14 @@ router.put(
       email,
       placementStatus,
       address,
+      typeOfSelection,
+      batchYear,
+      companyName,
+      salaryPkg,
+      fatherName,
+      fatherNumber,
+      motherName,
+      motherNumber,
     } = req.body;
     //Build Student Object
     const studentFields = {};
@@ -72,6 +80,14 @@ router.put(
     if (phoneNumber) studentFields.phoneNumber = phoneNumber;
     if (email) studentFields.email = email;
     if (placementStatus) studentFields.placementStatus = placementStatus;
+    if (fatherName) studentFields.fatherName = fatherName;
+    if (fatherNumber) studentFields.fatherNumber = fatherNumber;
+    if (motherName) studentFields.motherName = motherName;
+    if (motherNumber) studentFields.motherNumber = motherNumber;
+    if (companyName) studentFields.companyName = companyName;
+    if (salaryPkg) studentFields.salaryPkg = salaryPkg;
+    if (typeOfSelection) studentFields.typeOfSelection = typeOfSelection;
+    if (batchYear) studentFields.batchYear = batchYear;
     try {
       let studentProfile = await Student.findOne({
         _id: req.params.id,
@@ -129,6 +145,14 @@ router.post(
       email,
       address,
       placementStatus,
+      typeOfSelection,
+      motherName,
+      motherNumber,
+      fatherName,
+      fatherNumber,
+      companyName,
+      salaryPkg,
+      batchYear,
     } = req.body;
     //Build Student Object
     const studentFields = {};
@@ -145,6 +169,14 @@ router.post(
       if (phoneNumber) studentFields.phoneNumber = phoneNumber;
       if (placementStatus) studentFields.placementStatus = placementStatus;
       if (email) studentFields.email = email;
+      if (fatherName) studentFields.fatherName = fatherName;
+      if (fatherNumber) studentFields.fatherNumber = fatherNumber;
+      if (motherName) studentFields.motherName = motherName;
+      if (motherNumber) studentFields.motherNumber = motherNumber;
+      if (companyName) studentFields.companyName = companyName;
+      if (salaryPkg) studentFields.salaryPkg = salaryPkg;
+      if (typeOfSelection) studentFields.typeOfSelection = typeOfSelection;
+      if (batchYear) studentFields.batchYear = batchYear;
       let studentProfile = await Student.findOne({
         _id: req.params.id,
       });

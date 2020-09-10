@@ -40,6 +40,32 @@ const StudentSchema = new Schema({
     type: String,
     required: true,
   },
+  batchYear: {
+    type: Number,
+  },
+  companyName: {
+    type: String,
+  },
+  salaryPkg: {
+    type: String,
+  },
+  typeOfSelection: {
+    type: String,
+  },
+  fatherName: {
+    type: String,
+  },
+  fatherNumber: {
+    type: String,
+  },
+
+  motherName: {
+    type: String,
+  },
+  motherNumber: {
+    type: String,
+  },
+
   // avatar: {
   //   type: String,
   // },

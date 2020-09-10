@@ -4,14 +4,20 @@ import authContext from "../../../context/auth/authContext";
 import { useEffect } from "react";
 import Spinner from "../Spinner";
 import "../Student/CreateStudent.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const GetTeachers = () => {
+  const history = useHistory();
   const AuthContext = useContext(authContext);
-  const { loadTeachers, loading, users } = AuthContext;
+  const { loadTeachers, loading, users, isAuthenticated } = AuthContext;
   useEffect(() => {
     loadTeachers();
   }, [loadTeachers]);
+  useEffect(() => {
+    if (!isAuthenticated) {
+      history.push("/");
+    }
+  }, [isAuthenticated]);
 
   return loading ? (
     <Spinner />

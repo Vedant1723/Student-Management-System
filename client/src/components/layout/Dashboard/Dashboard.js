@@ -91,52 +91,6 @@ export const Dashboard = () => {
                   </div>
                 </div>
               </div>
-              <div className="col s12 m3 l3" style={{ margin: 10 }}>
-                <div className="card auth-card center-align button">
-                  <div className="card-content black-text">
-                    <img src={Edit} height="30" width="30" />
-                    <p className="center-align">
-                      <b>Edit Students</b>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              style={{
-                justifyContent: "space-around",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <div
-                style={{
-                  justifyContent: "center",
-                  display: "flex",
-                  flexDirection: "row",
-                }}
-              >
-                <div className="col s12 m3 l3" style={{ margin: 10 }}>
-                  <div className="card auth-card center-align button">
-                    <div className="card-content">
-                      <img src={Edit} height="30" width="30" />
-                      <p className="center-align">
-                        <b>Edit Students</b>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col s12 m3 l3" style={{ margin: 10 }}>
-                  <div className="card auth-card center-align button">
-                    <div className="card-content black-text">
-                      <img src={Edit} height="30" width="30" />
-                      <p className="center-align">
-                        <b>Edit Students</b>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

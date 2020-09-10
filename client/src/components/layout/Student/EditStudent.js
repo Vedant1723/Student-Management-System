@@ -5,18 +5,29 @@ import { useState } from "react";
 import studentContext from "../../../context/student/studentContext";
 import "./CreateStudent.css";
 import { useEffect } from "react";
+import Select from "react-select";
 
 const EditStudent = () => {
   const AuthContext = useContext(authContext);
   const history = useHistory();
   const { user, isAuthenticated } = AuthContext;
+  const StudentContext = useContext(studentContext);
+  const { updateStud, student } = StudentContext;
   useEffect(() => {
     if (!isAuthenticated) {
       history.push("/");
     }
   }, [isAuthenticated]);
-  const StudentContext = useContext(studentContext);
-  const { updateStud, student } = StudentContext;
+  const options = [
+    {
+      label: "Placed",
+      value: "Placed",
+    },
+    {
+      label: "Unplaced",
+      value: "Unplaced",
+    },
+  ];
 
   const [roll, setRoll] = useState(student.rollNumber);
   const [fName, setfName] = useState(student.firstName);
@@ -27,6 +38,20 @@ const EditStudent = () => {
   const [emailID, setemailID] = useState(student.email);
   const [location, setlocation] = useState(student.address);
   const [placement, setPlacement] = useState(student.placementStatus);
+  const [placementType, setPlacementType] = useState(
+    student.typeOfSelection ? student.typeOfSelection : "---"
+  );
+  const [batch, setBatch] = useState(student.batchYear);
+  const [salary, setSalary] = useState(
+    student.salaryPkg ? student.salaryPkg : "---"
+  );
+  const [company, setCompany] = useState(
+    student.companyName ? student.companyName : "---"
+  );
+  const [father, setFather] = useState(student.fatherName);
+  const [fatherNo, setFatherNo] = useState(student.fatherNumber);
+  const [mother, setMother] = useState(student.motherName);
+  const [motherNo, setMotherNo] = useState(student.motherNumber);
 
   const sample = () => {
     const data = {
@@ -39,16 +64,25 @@ const EditStudent = () => {
       email: emailID,
       address: location,
       placementStatus: placement,
+      typeOfSelection: placementType,
+      batchYear: batch,
+      companyName: company,
+      salaryPkg: salary,
+      fatherName: father,
+      fatherNumber: fatherNo,
+      motherName: mother,
+      motherNumber: motherNo,
     };
     console.log(data);
     updateStud(student._id, data);
+    alert(`Student ${fName} Updated!`);
     history.push("/dashboard");
   };
   return (
     <Fragment>
       {student != null ? (
         <div class="row">
-          <h2>Add a Student</h2>
+          <h2>Edit Student</h2>
           <form class="col s12">
             <div class="row">
               <div class="input-field col s5">
@@ -127,16 +161,14 @@ const EditStudent = () => {
                 />
               </div>
               <div className="input-field col s4">
-                <input
-                  id="placement"
-                  type="text"
-                  class="validate"
+                <Select
+                  placeholder="Placement Status"
+                  options={options}
                   value={placement}
                   onChange={(e) => {
                     setPlacement(e.target.value);
                   }}
                 />
-                <label for="placement">Placement Status</label>
               </div>
             </div>
             <div className="row">
@@ -163,6 +195,110 @@ const EditStudent = () => {
                   }}
                 />
                 <label for="address">Address</label>
+              </div>
+            </div>
+            <div className="row">
+              <div className="input-field col s5">
+                <input
+                  type="text"
+                  id="batch"
+                  className="validate"
+                  value={batch}
+                  onChange={(e) => {
+                    setBatch(e.target.value);
+                  }}
+                />
+                <label for="batch">Batch</label>
+              </div>
+              <div class="input-field col s5">
+                <input
+                  id="placementType"
+                  type="text"
+                  class="validate"
+                  value={placementType}
+                  onChange={(e) => {
+                    setPlacementType(e.target.value);
+                  }}
+                />
+                <label for="placementType">Placement Type</label>
+              </div>
+            </div>
+            <div className="row">
+              <div className="input-field col s5">
+                <input
+                  type="text"
+                  id="company"
+                  className="validate"
+                  value={company}
+                  onChange={(e) => {
+                    setCompany(e.target.value);
+                  }}
+                />
+                <label for="company">Company Name</label>
+              </div>
+              <div class="input-field col s5">
+                <input
+                  id="salary"
+                  type="text"
+                  class="validate"
+                  value={salary}
+                  onChange={(e) => {
+                    setSalary(e.target.value);
+                  }}
+                />
+                <label for="salary">Salary</label>
+              </div>
+            </div>
+            <div className="row">
+              <div className="input-field col s5">
+                <input
+                  type="text"
+                  id="fatherName"
+                  className="validate"
+                  value={father}
+                  onChange={(e) => {
+                    setFather(e.target.value);
+                  }}
+                />
+                <label for="fatherName">Father Name</label>
+              </div>
+              <div class="input-field col s5">
+                <input
+                  id="fatherNumber"
+                  type="text"
+                  class="validate"
+                  value={fatherNo}
+                  onChange={(e) => {
+                    setFatherNo(e.target.value);
+                  }}
+                />
+                <label for="fatherNumber">Father Number</label>
+              </div>
+            </div>
+            <div className="row">
+              <div className="input-field col s5">
+                <input
+                  type="text"
+                  id="motherName"
+                  className="validate"
+                  value={mother}
+                  onChange={(e) => {
+                    setMother(e.target.value);
+                  }}
+                />
+                <label for="motherName">Mother Name</label>
+              </div>
+              <div class="input-field col s5">
+                <input
+                  id="motherNumber"
+                  type="text"
+                  class="validate"
+                  value={motherNo}
+                  onChange={(e) => {
+                    setMotherNo(e.target.value);
+                  }}
+                />
+                <label for="motherNumber">Mother Number</label>
               </div>
             </div>
           </form>

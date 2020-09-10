@@ -2,10 +2,21 @@ import React, { useContext, Fragment } from "react";
 import { useState } from "react";
 import teacherContext from "../../../context/teacher/teacherContext";
 import Spinner from "../Spinner";
+import authContext from "../../../context/auth/authContext";
+import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 export const EditTeacherProfile = () => {
+  const history = useHistory();
   const TeacherContext = useContext(teacherContext);
   const { currentProfile, getCurrentProfile, updateProfile } = TeacherContext;
+  const AuthContext = useContext(authContext);
+  const { isAuthenticated } = AuthContext;
+  useEffect(() => {
+    if (!isAuthenticated) {
+      history.push("/");
+    }
+  }, [isAuthenticated]);
   //   useEffect(() => {
   //     if (currentProfile) {
   //       getCurrentProfile();
@@ -23,6 +34,8 @@ export const EditTeacherProfile = () => {
       address: location,
     };
     updateProfile(data);
+    alert("Profile Updated!");
+    history.push("/dashboard");
     // console.log(data);
   };
 
